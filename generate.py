@@ -1,5 +1,3 @@
-
-
 def generate():
     numOfInputs = int(input("How many different \"words\" do you have in your tags: "))
 
@@ -30,8 +28,10 @@ def generate():
             break
 
     print("Your tags are: ")
-    for item in finalList:
-        print(item + ", ", end="")
+    with open('tags.txt', 'w') as tags:
+        for item in finalList:
+            print(item + ", ", end="")
+            tags.write(item + ", " + '\n')
 
 if __name__ == "__main__":
     generate()
