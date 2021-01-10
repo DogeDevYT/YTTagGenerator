@@ -1,7 +1,12 @@
 def generate():
-    numOfInputs = int(input("How many different \"words\" do you have in your tags: "))
-
+    print("Loading defaulttags.txt...")
     words = []
+    with open('defaulttags.txt', 'r') as defaultTags:
+        extractedDefaultTags = defaultTags.read().split(",")
+        words += extractedDefaultTags
+    print("Default tags loaded successfully")
+
+    numOfInputs = int(input("How many different \"words\" do you have in your tags: "))
 
     for num in range(numOfInputs):
         temp = input("Enter word/phrase: ")
