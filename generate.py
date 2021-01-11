@@ -1,3 +1,7 @@
+from PyDictionary import PyDictionary
+
+dictionary=PyDictionary()
+
 def generate():
     print("Loading defaulttags.txt...")
     words = []
@@ -37,6 +41,12 @@ def generate():
         for item in finalList:
             print(item + ", ", end="")
             tags.write(item + ", " + '\n')
+            try:
+                synonym = (dictionary.synonym(item)[1])
+            except:
+                synonym = ""
+            print(synonym + ", ", end="")
+            tags.write(synonym + ", " + '\n')
 
 if __name__ == "__main__":
     generate()
