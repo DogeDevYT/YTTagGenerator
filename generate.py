@@ -1,3 +1,7 @@
+from PyDictionary import PyDictionary
+
+dictionary = PyDictionary()
+
 def generate():
     print("Loading defaulttags.txt...")
     words = []
@@ -16,6 +20,11 @@ def generate():
 
     for num in range(len(words)):
         temp = words[num]
+        try:
+            synonym = (dictionary.synonym(words[num])[1])
+            finalList.append(synonym)
+        except TypeError:
+            pass
         finalList.append(temp)
 
     for num in range(0, len(words), 2):
