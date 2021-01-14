@@ -7,8 +7,12 @@ def generate():
     words = []
     with open('defaulttags.txt', 'r') as defaultTags:
         extractedDefaultTags = defaultTags.read().split(",")
-        words += extractedDefaultTags
-    print("Default tags loaded successfully")
+        if len(extractedDefaultTags) > 1:
+            words += extractedDefaultTags
+            print("Default tags loaded successfully")
+        else:
+            print("No default tags were found")
+            words = []
 
     numOfInputs = int(input("How many different \"words\" do you have in your tags: "))
 
@@ -21,7 +25,7 @@ def generate():
     for num in range(len(words)):
         temp = words[num]
         try:
-            synonym = (dictionary.synonym(words[num])[1])
+            synonym = (dictionary.synonym(words[num])[0])
             finalList.append(synonym)
         except TypeError:
             pass
@@ -44,8 +48,13 @@ def generate():
     print("Your tags are: ")
     with open('tags.txt', 'w') as tags:
         for item in finalList:
-            print(item + ", ", end="")
-            tags.write(item + ", " + '\n')
+            if finalList.index(item) < len(finalList) - 1:
+                print(item + ", ", end="")
+                tags.write(item + ", " + '\n')
+            else:
+                print(item, end="")
+                tags.write(item + '\n')
+
 
 if __name__ == "__main__":
     generate()
